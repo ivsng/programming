@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/Kris/Desktop/Study/TPU/2sem/programming/laba1/lab1code/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -g -o CMakeFiles\\test123.dir\\main.cpp.obj -c C:\\Users\\Kris\\Desktop\\Study\\TPU\\2sem\\programming\\laba1\\lab1code\\main.cpp",
+  "file": "C:\\Users\\Kris\\Desktop\\Study\\TPU\\2sem\\programming\\laba1\\lab1code\\main.cpp",
+  "output": "CMakeFiles\\test123.dir\\main.cpp.obj"
+}
+]
