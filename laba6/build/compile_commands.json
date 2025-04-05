@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/Kris/Desktop/Study/TPU/2sem/programming/laba6/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -IC:/Users/Kris/Desktop/Study/TPU/2sem/programming/laba6/include -g -std=gnu++17 -o CMakeFiles\\program.dir\\main.cpp.obj -c C:\\Users\\Kris\\Desktop\\Study\\TPU\\2sem\\programming\\laba6\\main.cpp",
+  "file": "C:\\Users\\Kris\\Desktop\\Study\\TPU\\2sem\\programming\\laba6\\main.cpp",
+  "output": "CMakeFiles\\program.dir\\main.cpp.obj"
+},
+{
+  "directory": "C:/Users/Kris/Desktop/Study/TPU/2sem/programming/laba6/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -IC:/Users/Kris/Desktop/Study/TPU/2sem/programming/laba6/include -g -std=gnu++17 -o CMakeFiles\\program.dir\\src\\Rectangle.cpp.obj -c C:\\Users\\Kris\\Desktop\\Study\\TPU\\2sem\\programming\\laba6\\src\\Rectangle.cpp",
+  "file": "C:\\Users\\Kris\\Desktop\\Study\\TPU\\2sem\\programming\\laba6\\src\\Rectangle.cpp",
+  "output": "CMakeFiles\\program.dir\\src\\Rectangle.cpp.obj"
+}
+]
