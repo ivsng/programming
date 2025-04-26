@@ -1,101 +1,71 @@
 #include <iostream>
+#include "include/MovableRectangle.h"  // Подключение заголовка производного класса
 
 using namespace std;
 
-/**
-  * @brief Читает матрицу
-  * @param matrix матрица которая будет заполнена
-  * @param rows количество рядов
-  * @param cols кол-во столбцов
-*/
-void readMatrix(int** matrix, int rows, int cols) {
-    cout << "Enter matrix elements:" << endl;
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            cin >> matrix[i][j];
-        }
-    }
-}
-
-/**
-  * @brief Нахождение суммы элементов
-  * @param rows количество рядов
-  * @param cols кол-во столбцов
-  * @return сумма строки матрицы
-*/
-int rowSum(int* row, int cols) {
-    int sum = 0;
-    for (int i = 0; i < cols; i++) {
-        sum += row[i];
-    }
-    return sum;
-}
-
-/**
-  * @brief Обмен местами 2х строк
-  * @param a первая строка
-  * @param b вторая строка
-*/
-void swap(int*& a, int*& b) {
-    int* temp = a;
-    a = b;
-    b = temp;
-}
-
-/**
-  * @brief Сортировка матрицы основываясь на сумме
-  * @param matrix матрица
-  * @param rows количество рядов
-  * @param cols кол-во столбцов
-*/
-void sortRows(int** matrix, int rows, int cols) {
-    for (int i = 0; i < rows - 1; i++) {
-        for (int j = 0; j < rows - i - 1; j++) {
-            if (rowSum(matrix[j], cols) > rowSum(matrix[j + 1], cols)) {
-                swap(matrix[j], matrix[j + 1]);
-            }
-        }
-    }
-}
-
-/**
-  * @brief Вывод матрицы на экран
-  * @param matrix матрица
-  * @param rows количество рядов
-  * @param cols кол-во столбцов
-*/
-void displayMatrix(int** matrix, int rows, int cols) {
-    cout << "Sorted matrix:" << endl;
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            cout << matrix[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
-
 int main() {
-    int rows, cols;
+    // Переменные для параметров прямоугольника
+    double w, h, x, y;
 
-    cout << "Enter the number of rows and columns: ";
-    cin >> rows >> cols;
+    // Ввод начальных параметров прямоугольника
+    cout << "Enter width, height and center coordinates x y: ";
+    cin >> w >> h >> x >> y;
 
-    // Выделение памяти под матрицу
-    int** matrix = new int*[rows];
-    for (int i = 0; i < rows; i++) {
-        matrix[i] = new int[cols];
-    }
+    // Создание объекта производного класса
+    MovableRectangle rect(w, h, x, y);
 
-    readMatrix(matrix, rows, cols);
+    int command;
+    do {
+        // Меню команд для пользователя
+        cout << "\n********************\n";
+        cout << "Choose a command:\n";
+        cout << "1. Show parameters\n";
+        cout << "2. Check if crosses X-axis\n";
+        cout << "3. Check if crosses Y-axis\n";
+        cout << "4. Check if point is on boundary\n";
+        cout << "5. Calculate perimeter\n";
+        cout << "6. Show vertices\n";
+        cout << "7. Move to new center\n";
+        cout << "8. Move by dx, dy\n";
+        cout << "9. Reset to original position\n";
+        cout << "10. End\n";
+        cout << "Enter command number: ";
+        cin >> command;
+        cout << "********************\n";
 
-    sortRows(matrix, rows, cols);
-
-    displayMatrix(matrix, rows, cols);
-
-    for (int i = 0; i < rows; i++) {
-        delete[] matrix[i];
-    }
-    delete[] matrix;
+        // Обработка команды
+        switch (command) {
+            case 1:  rect.printInfo(); break;
+            case 2:  cout << "Crosses X-axis? " << (rect.crossesXAxis() ? "Yes" : "No") << endl; break;
+            case 3:  cout << "Crosses Y-axis? " << (rect.crossesYAxis() ? "Yes" : "No") << endl; break;
+            case 4: {
+                double px, py;
+                cout << "Enter point (px py): ";
+                cin >> px >> py;
+                cout << "Point on boundary? " << (rect.isPointOnBoundary(px, py) ? "Yes" : "No") << endl;
+                break;
+            }
+            case 5:  cout << "Perimeter: " << rect.calculatePerimeter() << endl; break;
+            case 6:  rect.printVertices(); break;
+            case 7: {
+                double newX, newY;
+                cout << "Enter new center (x y): ";
+                cin >> newX >> newY;
+                rect.moveTo(newX, newY);
+                break;
+            }
+            case 8: {
+                double dx, dy;
+                cout << "Enter dx and dy: ";
+                cin >> dx >> dy;
+                rect.moveBy(dx, dy);
+                break;
+            }
+            case 9:  rect.reset(); break;
+            case 10: cout << "Exiting...\n"; break;
+            default: cout << "Invalid command.\n";
+        }
+    } while (command != 10);
 
     return 0;
 }
